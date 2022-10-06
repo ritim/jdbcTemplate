@@ -15,10 +15,10 @@ public class SBFilters {
   {
     this.bitArray = new boolean[tLen];
     Arrays.fill(this.bitArray, Boolean.FALSE);
-    this.construction_filter(iSet);
+    this.constructionFilter(iSet);
   }
 
-  private boolean construction_filter(Set<Long> iSet)
+  private boolean constructionFilter(Set<Long> iSet)
   {
     int iSetSize = (iSet == null ? 0 :iSet.size());
     if(iSetSize == 0)
@@ -26,7 +26,7 @@ public class SBFilters {
       return false;
     }
     var hashNum = (int)(Math.log(2) * (this.bitArray.length / iSetSize));
-    this.construction_hashParams(hashNum);
+    this.constructionHashParams(hashNum);
     for(var item: iSet)
     {
       for(var params: this.hashParams)
@@ -37,7 +37,7 @@ public class SBFilters {
     return true;
   }
 
-  private boolean construction_hashParams(int hashNum)
+  private boolean constructionHashParams(int hashNum)
   {
     this.hashParams = new int[hashNum][3];
     var time = System.currentTimeMillis();
@@ -61,7 +61,7 @@ public class SBFilters {
     for(var params: this.hashParams)
     {
       int hashNumber = hashFunction(params, item);
-      System.out.println("[hashNumber]" + hashNumber);
+      System.out.println("[item]" + item + ", [hashNumber]" + hashNumber);
       if(!this.bitArray[hashNumber])
       {
         return false;
